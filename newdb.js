@@ -17,7 +17,7 @@ app.post("/signup",(req,res)=>{
     const password= req.body.password
 
 
-    var user = new User({
+    const user = new User({
         name:names,
         emai:email,
         password:password,
@@ -32,14 +32,24 @@ app.post("/signup",(req,res)=>{
 
 })
 
-app.get('/list',(req,res)=>{
 
-res.json({
-    User,
+app.get('/list', (req, res) => {
+   
+    User.find({}).then(users => {
+        
+     
+       return res.json(users);
+
+    }).catch(err => {
+        console.error(err);
+        res.status(500).json({
+            error: "Internal Server Error"
+        });
+    });
 })
 
 
-})
+
 
 app.listen(3000,()=>{
     console.log("you sever is on https//localhost3000 ")
