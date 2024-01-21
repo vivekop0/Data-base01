@@ -36,7 +36,7 @@ app.post("/signup",(req,res)=>{
 app.get('/list', (req, res) => {
    
     User.find({}).then(users => {
-        
+    
      
        return res.json(users);
 
